@@ -5,9 +5,10 @@
 // @license     CC0
 // @match       https://www.twitch.tv/*
 // @icon        https://static.twitchcdn.net/assets/favicon-32-e29e246c157142c94346.png
-// @version     0.6
-// @grant       GM_addStyle
+// @version     0.5
 // @namespace https://github.com/LoneDestroyer
+// @downloadURL https://raw.githubusercontent.com/LoneDestroyer/Twitch-Channel-Points-QOL/main/Twitch-Channel-Points-QOL.user.js
+// @updateURL https://raw.githubusercontent.com/LoneDestroyer/Twitch-Channel-Points-QOL/main/Twitch-Channel-Points-QOL.user.js
 // ==/UserScript==
 
 (function() {
