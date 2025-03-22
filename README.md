@@ -1,8 +1,8 @@
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
-  <a href="https://static.twitchcdn.net/assets/favicon-32-e29e246c157142c94346.png">
-    <img src="AWALogo.png" alt="Logo" width="100" height="100">
+  <a href="https://github.com/LoneDestroyer/Twitch-Channel-Points-QOL">
+    <img src="https://www.twitch.tv/apple-touch-icon.png" alt="Logo" width="100" height="100">
   </a>
 
 <h3 align="center">Twitch Channel Point QOL</h3>
@@ -23,7 +23,7 @@
 * [Greasemonkey](https://violentmonkey.github.io/)
 
 #### Step 2: UserScript
-* [Install](placeholder) *(Github)*
+* [Install](https://github.com/LoneDestroyer/Twitch-Channel-Points-QOL/raw/refs/heads/main/Twitch%20Channel%20Poihnts%20QOL.user.js) *(Github)*
 
 
 <!-- Screenshots -->
@@ -33,8 +33,8 @@
   <div align="center">
     <img
       alt="New (Component)"
-      src="placeholder"
-      height="550"/>
+      src="https://github.com/user-attachments/assets/02b47ac6-4208-48d5-b634-3bcfdc63a608"
+      height="300"/>
   </div>
 </details>
 
@@ -43,7 +43,7 @@
   <div align="center">
     <img
       alt="Old (Panel)"
-      src="placeholder"
-      height="550"/>
+      src="https://github.com/user-attachments/assets/17f67536-541d-46c0-911b-379525a56d5b"
+      height="300"/>
   </div>
 </details>
