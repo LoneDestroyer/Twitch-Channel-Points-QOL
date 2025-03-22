@@ -23,7 +23,7 @@
 * [Greasemonkey](https://violentmonkey.github.io/)
 
 #### Step 2: UserScript
-* [Install](https://github.com/LoneDestroyer/Twitch-Channel-Points-QOL/raw/refs/heads/main/Twitch%20Channel%20Poihnts%20QOL.user.js) *(Github)*
+* [Install](https://github.com/LoneDestroyer/Twitch-Channel-Points-QOL/raw/refs/heads/main/Twitch-Channel-Points-QOL.user.js) *(Github)*
 
 
 <!-- Screenshots -->
