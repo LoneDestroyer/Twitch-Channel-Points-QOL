@@ -1,11 +1,11 @@
 // ==UserScript==
-// @name        Twitch Channel Point QOL
+// @name        Twitch Channel Points QOL
 // @description Renames Steam/GOG/EA Key Giveaway rewards on Twitch (soon to be automated) and adds icons
 // @author      Lone Destroyer
 // @license     CC0
 // @match       https://www.twitch.tv/*
 // @icon        https://static.twitchcdn.net/assets/favicon-32-e29e246c157142c94346.png
-// @version     0.5
+// @version     0.6
 // @namespace https://github.com/LoneDestroyer
 // @downloadURL https://raw.githubusercontent.com/LoneDestroyer/Twitch-Channel-Points-QOL/main/Twitch-Channel-Points-QOL.user.js
 // @updateURL https://raw.githubusercontent.com/LoneDestroyer/Twitch-Channel-Points-QOL/main/Twitch-Channel-Points-QOL.user.js
