@@ -8,8 +8,8 @@
 <h3 align="center">Twitch Channel Point QOL</h3>
 
   <p align="center"><strong>
-    Shortens [Steam / GOG / EA] Twitch Panel rewards to include the icon</strong><br />
-    Remover for claimed rewards is working but not implemented. Looking to implement in the future
+    Replaces [Steam / GOG / EA] in Twitch Panel rewards with platform icons.<br />
+    Includes an eye icon to hide the reward and a panel for selecting which rewards to return.</strong>
   </p>
 </div>
 
@@ -23,7 +23,7 @@
 * [Greasemonkey](https://violentmonkey.github.io/)
 
 #### Step 2: UserScript
-* [Install](https://github.com/LoneDestroyer/Twitch-Channel-Points-QOL/raw/refs/heads/main/Twitch-Channel-Points-QOL.user.js) *(Github)*
+* [Click here to install](https://github.com/LoneDestroyer/Twitch-Channel-Points-QOL/raw/refs/heads/main/Twitch-Channel-Points-QOL.user.js) *(via Github)*
 
 
 <!-- Screenshots -->
@@ -33,8 +33,8 @@
   <div align="center">
     <img
       alt="New (Component)"
-      src="https://github.com/user-attachments/assets/02b47ac6-4208-48d5-b634-3bcfdc63a608"
-      height="300"/>
+      src="https://github.com/user-attachments/assets/0dfd2665-f342-451d-a168-8df3ede84e0c"
+      height="250"/>
   </div>
 </details>
 
@@ -43,7 +43,7 @@
   <div align="center">
     <img
       alt="Old (Panel)"
-      src="https://github.com/user-attachments/assets/17f67536-541d-46c0-911b-379525a56d5b"
-      height="300"/>
+      src="https://github.com/user-attachments/assets/0adcea6b-b8a2-4be8-9b2a-b0b8ccfec316"
+      height="250"/>
   </div>
 </details>
