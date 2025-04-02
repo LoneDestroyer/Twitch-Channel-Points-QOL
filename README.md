@@ -5,11 +5,11 @@
     <img src="https://www.twitch.tv/apple-touch-icon.png" alt="Logo" width="100" height="100">
   </a>
 
-<h3 align="center">Twitch Channel Point QOL</h3>
+<h3 align="center">Twitch Channel Points - Quality Of Life</h3>
 
   <p align="center"><strong>
     Replaces [Steam / GOG / EA] in Twitch Panel rewards with platform icons.<br />
-    Includes an eye icon to hide the reward and a panel for selecting which rewards to return.</strong>
+    Includes an eye icon to hide rewards & power-ups. Also a panel for selecting which items to return.</strong>
   </p>
 </div>
 
