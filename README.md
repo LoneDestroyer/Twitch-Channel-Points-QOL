@@ -8,7 +8,7 @@
 <h3 align="center">Twitch Channel Points - Quality Of Life</h3>
 
   <p align="center"><strong>
-    Replaces [Steam / GOG / EA] in Twitch Panel rewards with platform icons.<br />
+    Replaces [Platform Name] in Twitch Panel rewards with platform icons.<br />
     Includes an eye icon to hide rewards & power-ups. Also a panel for selecting which items to return.</strong>
   </p>
 </div>

@@ -5,13 +5,14 @@
 // @license     MIT
 // @match       https://www.twitch.tv/*
 // @icon        https://static.twitchcdn.net/assets/favicon-32-e29e246c157142c94346.png
-// @version     1.2
+// @version     1.3
 // @namespace https://github.com/LoneDestroyer
 // @downloadURL https://raw.githubusercontent.com/LoneDestroyer/Twitch-Channel-Points-QOL/main/Twitch-Channel-Points-QOL.user.js
 // @updateURL https://raw.githubusercontent.com/LoneDestroyer/Twitch-Channel-Points-QOL/main/Twitch-Channel-Points-QOL.user.js
 // ==/UserScript==
 /*
  Changelog:
+ v1.3 - Supports Microsoft / Xbox Rewards
  v1.2 - Added hiding Power-Ups
  v1.1 - No longer imports font-awesome, uses SVG for the remove button
  v1.0 - Added hiding and restoring of buttons
@@ -144,7 +145,7 @@
                 <div class="ScFigure-sc-wkgzod-0 fewniq tw-svg">
                     <svg width="20" height="20" viewBox="0 0 20 20" focusable="false" aria-hidden="true" role="presentation">
                         <path d="M8.5 10 4 5.5 5.5 4 10 8.5 14.5 4 16 5.5 11.5 10l4.5 4.5-1.5 1.5-4.5-4.5L5.5 16 4 14.5 8.5 10z" fill="var(--color-fill-button-icon)"></path>
-                    </svg> 
+                    </svg>
                 </div>`;// Twitch close icon
             closeButton.appendChild(closeIcon);
 
@@ -192,7 +193,7 @@
 
                 // Set a different color for "Power-Ups" button
                 restoreButton.style = `
-                    margin: 2px 0; padding: 5px; height: 30px; 
+                    margin: 2px 0; padding: 5px; height: 30px;
                     background-color: ${rewardText === 'Twitch Power-Ups' ? '#2850a7' : '#28a745'};
                     color: #fff; border-radius: 3px; cursor: pointer; font-size: 14px;
                     width: 100%; box-sizing: border-box;
@@ -211,7 +212,12 @@
     const iconMappings = {
         Steam: 'https://store.steampowered.com/favicon.ico',
         GOG: 'https://www.gog.com/favicon.ico',
-        EA: 'https://www.ea.com/assets/images/favicon.png'
+        EA: 'https://www.ea.com/assets/images/favicon.png',
+        Microsoft: 'https://www.microsoft.com/favicon.ico',
+        'Windows 10': 'https://www.microsoft.com/favicon.ico',
+        'Windows 11': 'https://www.microsoft.com/favicon.ico',
+        Windows: 'https://www.microsoft.com/favicon.ico',
+        Xbox: 'https://www.xbox.com/favicon.ico',
     };
 
     // Rename rewards based on the text content & add a "Remove" button
@@ -273,9 +279,9 @@
                 const style = document.createElement('style');
                 style.id = 'power-ups-style';
                 style.textContent = `
-                    .rewards-list > div:first-of-type, 
-                    .rewards-list [class*="bitsRewardListItem"] { 
-                        display: none !important; 
+                    .rewards-list > div:first-of-type,
+                    .rewards-list [class*="bitsRewardListItem"] {
+                        display: none !important;
                     }
                     .rewards-list > div {
                         padding-top: 0 !important;
