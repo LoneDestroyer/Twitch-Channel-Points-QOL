@@ -6,13 +6,14 @@
   </a>
 
 <h3 align="center">Twitch Channel Points - Quality Of Life</h3>
-
-  <p align="center"><strong>
-    Replaces [Platform Name] in Twitch Panel rewards with platform icons.<br />
-    Includes an eye icon to hide rewards & power-ups. Also a panel for selecting which items to return.</strong>
-  </p>
 </div>
 
+<!-- Features -->
+## Features
+- Adds an eye icon on Point Rewards to hide them
+- Adds a panel to restore hidden items
+- Replaces [Platform Name] in Twitch Panel rewards with platform icons.
+  - Supported: Steam, GOG, EA, Microsoft Store, Windows, Xbox
 
 <!-- Install Help -->
 ## Installation
