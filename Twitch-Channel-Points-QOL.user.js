@@ -5,13 +5,14 @@
 // @license     MIT
 // @match       https://www.twitch.tv/*
 // @icon        https://static.twitchcdn.net/assets/favicon-32-e29e246c157142c94346.png
-// @version     1.3
+// @version     1.4
 // @namespace https://github.com/LoneDestroyer
 // @downloadURL https://raw.githubusercontent.com/LoneDestroyer/Twitch-Channel-Points-QOL/main/Twitch-Channel-Points-QOL.user.js
 // @updateURL https://raw.githubusercontent.com/LoneDestroyer/Twitch-Channel-Points-QOL/main/Twitch-Channel-Points-QOL.user.js
 // ==/UserScript==
 /*
  Changelog:
+ v1.4 - Change EA Icon, Update Reward regex
  v1.3 - Supports Microsoft / Xbox Rewards
  v1.2 - Added hiding Power-Ups
  v1.1 - No longer imports font-awesome, uses SVG for the remove button
@@ -212,8 +213,9 @@
     const iconMappings = {
         Steam: 'https://store.steampowered.com/favicon.ico',
         GOG: 'https://www.gog.com/favicon.ico',
-        EA: 'https://www.ea.com/assets/images/favicon.png',
+        EA: 'https://upload.wikimedia.org/wikipedia/commons/0/0d/Electronic-Arts-Logo.svg',
         Microsoft: 'https://www.microsoft.com/favicon.ico',
+        'Microsoft Store': 'https://www.microsoft.com/favicon.ico',
         'Windows 10': 'https://www.microsoft.com/favicon.ico',
         'Windows 11': 'https://www.microsoft.com/favicon.ico',
         Windows: 'https://www.microsoft.com/favicon.ico',
@@ -262,7 +264,7 @@
                 // Rename rewards based on mappings
                 for (const [key, iconUrl] of Object.entries(iconMappings)) {
                     if (textContent.startsWith(key)) {
-                        textContent = textContent.replace(new RegExp(`^${key}(?: Key Giveaway)?\\s*`, 'i'), '').trim();
+                        textContent = textContent.replace(new RegExp(`^${key}:?(?:\\s*(?:Key Giveaway:?|APP Key:?))?\\s*`, 'i'), '').trim();
                         textElement.innerHTML = `<img src="${iconUrl}" alt="${key}" style="width:16px; height:16px; vertical-align:middle;"> ${textContent}`;
                         break;
                     }
