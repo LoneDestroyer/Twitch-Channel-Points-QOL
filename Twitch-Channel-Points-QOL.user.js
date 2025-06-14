@@ -5,26 +5,17 @@
 // @license     MIT
 // @match       https://www.twitch.tv/*
 // @icon        https://static.twitchcdn.net/assets/favicon-32-e29e246c157142c94346.png
-// @version     1.4
+// @version     1.5
 // @namespace https://github.com/LoneDestroyer
 // @downloadURL https://raw.githubusercontent.com/LoneDestroyer/Twitch-Channel-Points-QOL/main/Twitch-Channel-Points-QOL.user.js
 // @updateURL https://raw.githubusercontent.com/LoneDestroyer/Twitch-Channel-Points-QOL/main/Twitch-Channel-Points-QOL.user.js
 // ==/UserScript==
-/*
- Changelog:
- v1.4 - Change EA Icon, Update Reward regex
- v1.3 - Supports Microsoft / Xbox Rewards
- v1.2 - Added hiding Power-Ups
- v1.1 - No longer imports font-awesome, uses SVG for the remove button
- v1.0 - Added hiding and restoring of buttons
- v0.5 - Initial release (renames rewards)
-*/
 
 (function() {
     'use strict';
 
     // Define the specific CSS selector for the reward
-    const rewardSelector = 'div.Layout-sc-1xcs6mc-0.iqUbUe.reward-list-item';
+    const rewardSelector = 'div.Layout-sc-1xcs6mc-0.eSwkVS.reward-list-item';
 
     // Define the rewards panel selector
     const rewardsPanelSelector = 'div#channel-points-reward-center-body';
@@ -55,7 +46,7 @@
         const removedRewards = getRemovedRewards();
         const rewardElements = document.querySelectorAll(rewardSelector);
         rewardElements.forEach(rewardElement => {
-            const textElement = rewardElement.querySelector('div.Layout-sc-1xcs6mc-0.auOiD > p.CoreText-sc-1txzju1-0.javhvP');
+            const textElement = rewardElement.querySelector('div.Layout-sc-1xcs6mc-0.hVsieY > p.CoreText-sc-1txzju1-0.cxlPEL');
             if (textElement && removedRewards.includes(textElement.textContent.trim())) {
                 rewardElement.style.display = 'none';
             }
@@ -75,7 +66,7 @@
         } else {
             const rewardElements = document.querySelectorAll(rewardSelector);
             rewardElements.forEach(rewardElement => {
-                const textElement = rewardElement.querySelector('div.Layout-sc-1xcs6mc-0.auOiD > p.CoreText-sc-1txzju1-0.javhvP');
+                const textElement = rewardElement.querySelector('div.Layout-sc-1xcs6mc-0.hVsieY > p.CoreText-sc-1txzju1-0.cxlPEL');
                 if (textElement && textElement.textContent.trim() === rewardText) {
                     rewardElement.style.display = '';
                 }
@@ -93,7 +84,7 @@
 
     // Add a "Restore Rewards" button next to the specified button
     function addRestoreRewardsButton() {
-        const targetButton = document.querySelector('.hPHdJk > div:nth-child(2)');
+        const targetButton = document.querySelector('.iHgHKM > div:nth-child(2)');
         if (targetButton && !document.querySelector('#restore-rewards-button')) {
             const restoreRewardsButton = document.createElement('button');
             restoreRewardsButton.id = 'restore-rewards-button';
@@ -176,7 +167,7 @@
             outerContainer.appendChild(restoreButtonsContainer);
 
             // Append the outer container to the target div
-            const targetDiv = document.querySelector('.EwYZh');
+            const targetDiv = document.querySelector('.iGvYpN');
             if (targetDiv) {
                 targetDiv.parentElement.insertBefore(outerContainer, targetDiv);
             } else {
@@ -226,7 +217,7 @@
     function updateRewards() {
         const rewardElements = document.querySelectorAll(rewardSelector);
         rewardElements.forEach(rewardElement => {
-            const textElement = rewardElement.querySelector('div.Layout-sc-1xcs6mc-0.auOiD > p.CoreText-sc-1txzju1-0.javhvP');
+            const textElement = rewardElement.querySelector('div.Layout-sc-1xcs6mc-0.hVsieY > p.CoreText-sc-1txzju1-0.cxlPEL');
             if (textElement) {
                 let textContent = textElement.textContent.trim();
                 // Add a "Remove" button
