@@ -5,7 +5,7 @@
 // @license     MIT
 // @match       https://www.twitch.tv/*
 // @icon        https://static.twitchcdn.net/assets/favicon-32-e29e246c157142c94346.png
-// @version     1.5
+// @version     1.6
 // @namespace https://github.com/LoneDestroyer
 // @downloadURL https://raw.githubusercontent.com/LoneDestroyer/Twitch-Channel-Points-QOL/main/Twitch-Channel-Points-QOL.user.js
 // @updateURL https://raw.githubusercontent.com/LoneDestroyer/Twitch-Channel-Points-QOL/main/Twitch-Channel-Points-QOL.user.js
@@ -14,11 +14,19 @@
 (function() {
     'use strict';
 
-    // Define the specific CSS selector for the reward
-    const rewardSelector = 'div.Layout-sc-1xcs6mc-0.eSwkVS.reward-list-item';
-
-    // Define the rewards panel selector
-    const rewardsPanelSelector = 'div#channel-points-reward-center-body';
+    // Selectors
+    const rewardsPanelSelector = '#channel-points-reward-center-body'; // Rewards Pane
+    const rewardsBodySelector = '.reward-center__content'; // Rewards Center Content
+    const rewardSelector = '.reward-list-item'; // Rewards Item
+    const rewardTextSelector = '.reward-list-item > div:nth-child(1) > div:nth-child(2) > p'; // Reward Text
+    const rewardsPanelFooterSelector = '.reward-center__content > div:nth-child(3) > div:nth-child(2)'; // Footer for Restore Rewards Button
+    
+    // Power-Ups title selector
+    function getPowerUpsTitleElement() {
+        return Array.from(document.querySelectorAll('.tw-title')).find(
+            powerUpsTitleEl => powerUpsTitleEl.textContent.trim().toLowerCase() === 'power-ups'
+        );
+    }
 
     // Function to get removed rewards from localStorage
     function getRemovedRewards() {
@@ -41,18 +49,24 @@
         localStorage.setItem('removedRewards', JSON.stringify(updatedRewards));
     }
 
+    // Helper to set display for rewards by name (using original text)
+    function setRewardsDisplay(rewardNames, displayValue) {
+        const rewardElements = document.querySelectorAll(rewardSelector);
+        rewardElements.forEach(rewardElement => {
+            // Use data-original-reward if present, else fallback to visible text
+            const textElement = rewardElement.querySelector(rewardTextSelector);
+            let originalText = rewardElement.dataset.originalReward || (textElement ? textElement.textContent.trim() : "");
+            if (rewardNames.includes(originalText)) {
+                rewardElement.style.display = displayValue;
+            }
+        });
+    }
+
     // Function to hide rewards based on localStorage
     function hideRemovedRewards() {
         const removedRewards = getRemovedRewards();
-        const rewardElements = document.querySelectorAll(rewardSelector);
-        rewardElements.forEach(rewardElement => {
-            const textElement = rewardElement.querySelector('div.Layout-sc-1xcs6mc-0.hVsieY > p.CoreText-sc-1txzju1-0.cxlPEL');
-            if (textElement && removedRewards.includes(textElement.textContent.trim())) {
-                rewardElement.style.display = 'none';
-            }
-        });
-
-        // Hide Power-Ups if they are in the removedRewards
+        setRewardsDisplay(removedRewards, 'none');
+        // Hide Power-Ups if needed
         if (removedRewards.includes('Twitch Power-Ups')) {
             togglePowerUpsVisibility(true);
         }
@@ -64,28 +78,22 @@
         if (rewardText === 'Twitch Power-Ups') {
             togglePowerUpsVisibility(false); // Show Power-Ups
         } else {
-            const rewardElements = document.querySelectorAll(rewardSelector);
-            rewardElements.forEach(rewardElement => {
-                const textElement = rewardElement.querySelector('div.Layout-sc-1xcs6mc-0.hVsieY > p.CoreText-sc-1txzju1-0.cxlPEL');
-                if (textElement && textElement.textContent.trim() === rewardText) {
-                    rewardElement.style.display = '';
-                }
-            });
+            setRewardsDisplay([rewardText], '');
         }
     }
 
     // Toggle visibility of the restore container
     function toggleRestoreContainer() {
-        let restoreContainer = document.querySelector('#restore-container');
-        if (restoreContainer) {
-            restoreContainer.style.display = restoreContainer.style.display === 'none' ? 'block' : 'none';
+        let restoreContainerEl = document.querySelector('#restore-container');
+        if (restoreContainerEl) {
+            restoreContainerEl.style.display = restoreContainerEl.style.display === 'none' ? 'block' : 'none';
         }
     }
 
-    // Add a "Restore Rewards" button next to the specified button
+    // Add a "Restore Rewards" button to channel points footer
     function addRestoreRewardsButton() {
-        const targetButton = document.querySelector('.iHgHKM > div:nth-child(2)');
-        if (targetButton && !document.querySelector('#restore-rewards-button')) {
+        const rewardsPanelFooterEl = document.querySelector(rewardsPanelFooterSelector);
+        if (rewardsPanelFooterEl && !document.querySelector('#restore-rewards-button')) {
             const restoreRewardsButton = document.createElement('button');
             restoreRewardsButton.id = 'restore-rewards-button';
             restoreRewardsButton.textContent = 'Restore Rewards';
@@ -95,7 +103,7 @@
             `;
 
             restoreRewardsButton.addEventListener('click', toggleRestoreContainer);
-            targetButton.parentElement.appendChild(restoreRewardsButton);
+            rewardsPanelFooterEl.parentElement.appendChild(restoreRewardsButton);
         }
     }
 
@@ -104,8 +112,8 @@
         const removedRewards = getRemovedRewards();
 
         // Create a container for restore buttons if it doesn't exist
-        let restoreContainer = document.querySelector('#restore-container');
-        if (!restoreContainer) {
+        let restoreContainerEl = document.querySelector('#restore-container');
+        if (!restoreContainerEl) {
             // Create the outer container
             const outerContainer = document.createElement('div');
             outerContainer.id = 'restore-container';
@@ -166,10 +174,10 @@
 
             outerContainer.appendChild(restoreButtonsContainer);
 
-            // Append the outer container to the target div
-            const targetDiv = document.querySelector('.iGvYpN');
-            if (targetDiv) {
-                targetDiv.parentElement.insertBefore(outerContainer, targetDiv);
+            // Append the outer container to the Rewards Body
+            const rewardsBodyEl = document.querySelector(rewardsBodySelector);
+            if (rewardsBodyEl) {
+                rewardsBodyEl.parentElement.insertBefore(outerContainer, rewardsBodyEl);
             } else {
                 document.body.appendChild(outerContainer); // Fallback if target div is not found
             }
@@ -179,7 +187,19 @@
             const restoreButtonsContainer = document.querySelector('#restore-buttons-container');
             if (!restoreButtonsContainer.querySelector(`.restore-reward-button[data-reward="${rewardText}"]`)) {
                 const restoreButton = document.createElement('button');
-                restoreButton.textContent = rewardText;
+                
+                // Icon mapping for restore panel, and stripx text prefix
+                // GOG Doom Eternal will become <Icon> Doom Eternal
+                let iconHtml = '';
+                let displayText = rewardText;
+                for (const [key, iconUrl] of Object.entries(iconMappings)) {
+                    if (rewardText.startsWith(key)) {
+                        iconHtml = `<img src="${iconUrl}" alt="${key}" style="width:16px; height:16px; vertical-align:middle; margin-right:4px;">`;
+                        displayText = rewardText.replace(new RegExp(`^${key}:?(?:\\s*(?:Key Giveaway:?|APP Key:?))?\\s*`, 'i'), '').trim();
+                        break;
+                    }
+                }
+                restoreButton.innerHTML = `${iconHtml}${displayText}`;
                 restoreButton.className = 'restore-reward-button';
                 restoreButton.dataset.reward = rewardText;
 
@@ -217,9 +237,15 @@
     function updateRewards() {
         const rewardElements = document.querySelectorAll(rewardSelector);
         rewardElements.forEach(rewardElement => {
-            const textElement = rewardElement.querySelector('div.Layout-sc-1xcs6mc-0.hVsieY > p.CoreText-sc-1txzju1-0.cxlPEL');
+            const textElement = rewardElement.querySelector(rewardTextSelector);
             if (textElement) {
                 let textContent = textElement.textContent.trim();
+
+                // Store the original text as a data attribute if not already set
+                if (!rewardElement.dataset.originalReward) {
+                    rewardElement.dataset.originalReward = textContent;
+                }
+
                 // Add a "Remove" button
                 if (!rewardElement.querySelector('.remove-reward-button')) {
                     const removeRewardButton = document.createElement('button');
@@ -246,7 +272,7 @@
                     });
                     removeRewardButton.addEventListener('click', () => {
                         rewardElement.style.display = 'none'; // Hide the specific reward
-                        saveRemovedReward(textContent); // Save to localStorage
+                        saveRemovedReward(rewardElement.dataset.originalReward); // Save original to localStorage
                         addRestoreButtons(); // Update the restore list
                     });
                     rewardElement.style.position = 'relative';
@@ -293,8 +319,8 @@
 
     // Add an eye icon button to hide rewards
     function removePowerupButton() {
-        const targetElement = document.querySelector('div.Layout-sc-1xcs6mc-0.josRc p.CoreText-sc-1txzju1-0.ScTitleText-sc-d9mj2s-0.sghpq.jYWWLJ.tw-title');
-        if (targetElement && !targetElement.querySelector('.remove-powerup-button')) {
+        const powerUpsTitleEl = getPowerUpsTitleElement();
+        if (powerUpsTitleEl && !powerUpsTitleEl.querySelector('.remove-powerup-button')) {
             const removePowerupButton = document.createElement('button');
             removePowerupButton.className = 'remove-powerup-button';
             removePowerupButton.innerHTML = `
@@ -320,7 +346,7 @@
             removePowerupButton.addEventListener('click', () => {
                 togglePowerUpsVisibility(true); // Hide rewards
             });
-            targetElement.appendChild(removePowerupButton);
+            powerUpsTitleEl.appendChild(removePowerupButton);
         }
     }
 
