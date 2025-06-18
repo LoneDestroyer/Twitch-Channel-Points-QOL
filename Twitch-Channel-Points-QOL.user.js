@@ -1,11 +1,11 @@
 // ==UserScript==
-// @name        Twitch Channel Points QOL2
+// @name        Twitch Channel Points QOL
 // @description Hides & Renames Twitch Channel Point Rewards
 // @author      Lone Destroyer
 // @license     MIT
 // @match       https://www.twitch.tv/*
 // @icon        https://static.twitchcdn.net/assets/favicon-32-e29e246c157142c94346.png
-// @version     1.7
+// @version     1.8
 // @namespace https://github.com/LoneDestroyer
 // @downloadURL https://raw.githubusercontent.com/LoneDestroyer/Twitch-Channel-Points-QOL/main/Twitch-Channel-Points-QOL.user.js
 // @updateURL https://raw.githubusercontent.com/LoneDestroyer/Twitch-Channel-Points-QOL/main/Twitch-Channel-Points-QOL.user.js
@@ -20,6 +20,8 @@
     const rewardSelector = '.reward-list-item'; // Rewards Item
     const rewardTextSelector = '.reward-list-item > div:nth-child(1) > div:nth-child(2) > p'; // Reward Text
     const rewardsPanelFooterSelector = '.reward-center__content > div:nth-child(3) > div:nth-child(2)'; // Footer for Restore Rewards Button
+    const rewardsDescriptionSelector = '.reward-center-body > div:nth-child(1) > div:nth-child(1) > p:nth-child(1)'; // Rewards Description
+    
     // --- Power-Ups Selector ---
     function getPowerUpsTitleElement() {
         return Array.from(document.querySelectorAll('.tw-title')).find(
@@ -308,7 +310,7 @@
     }
 
 
-    // Rename rewards based on the text content & add a "Remove" button
+    // Rename rewards based on the text content & Ability to remove the Power-Ups - Adds eye button to hide
     function updateRewards() {
         const rewardElements = document.querySelectorAll(rewardSelector);
         rewardElements.forEach(rewardElement => {
@@ -372,7 +374,7 @@
         }
     }
 
-    // Add an eye icon button to hide rewards
+    // Ability to remove the Power-Ups - Adds eye button to hide
     function removePowerupButton() {
         const powerUpsTitleEl = getPowerUpsTitleElement();
         if (powerUpsTitleEl && !powerUpsTitleEl.querySelector('.remove-powerup-button')) {
@@ -405,6 +407,19 @@
         return { iconHtml: '', displayText: rewardText };
     }
 
+    // Converts URLs in the rewardsDescription to clickable links
+    function linkifyDescription() {
+        const rewardsDescripEl = document.querySelector(rewardsDescriptionSelector);
+        if (rewardsDescripEl && rewardsDescripEl.childNodes.length === 1 && rewardsDescripEl.childNodes[0].nodeType === Node.TEXT_NODE) {
+            const rewardsDectipText = rewardsDescripEl.textContent;
+            const txt2UrlRegex = /(https?:\/\/[^\s]+)/g;
+            if (txt2UrlRegex.test(rewardsDectipText)) {
+                const txt2UrlHtml = rewardsDectipText.replace(txt2UrlRegex, url => `<a href="${url}" rewardsDescripEl="_blank" rel="noopener noreferrer">${url}</a>`);
+                rewardsDescripEl.innerHTML = txt2UrlHtml;
+            }
+        }
+    }
+
     // Function to observe the rewards panel
     function observeRewardsPanel() {
         const observer = new MutationObserver(() => {
@@ -414,12 +429,11 @@
                 removePowerupButton(); // Add button to hide powerups
                 addRestoreButtons(); // Add restore buttons for hidden rewards
                 addRestoreRewardsButton(); // Add the "Restore Rewards" button next to the target button
+                linkifyDescription(); // Convert URLs in the rewards description to clickable links
             }
         });
-        // Start observing the body for changes
         observer.observe(document.body, { childList: true, subtree: true });
     }
-
     // Wait until the page has fully loaded
     window.addEventListener('load', () => {
         observeRewardsPanel();

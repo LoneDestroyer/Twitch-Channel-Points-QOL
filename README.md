@@ -10,10 +10,10 @@
 
 <!-- Features -->
 ## Features
-- Adds an eye icon on Point Rewards to hide them
-- Adds a panel to restore hidden items
-- Replaces [Platform Name] in Twitch Panel rewards with platform icons.
-  - Supported: Steam, GOG, EA, Microsoft Store, Windows, Xbox
+- Hide Unwanted Point Rewards & Power-Ups (*global*)
+- Restore Hidden Items
+- Linkyify Descriptions - Converts plain text URLs in the reward description into clickable links.
+- Replaces platform name prefixes (e.g., "Steam:") with platform icons (Steam, GOG, EA, Microsoft Store, Windows, Xbox)
 
 <!-- Install Help -->
 ## Installation
