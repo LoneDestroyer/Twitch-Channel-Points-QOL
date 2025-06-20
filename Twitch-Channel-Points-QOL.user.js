@@ -5,7 +5,7 @@
 // @license     MIT
 // @match       https://www.twitch.tv/*
 // @icon        https://static.twitchcdn.net/assets/favicon-32-e29e246c157142c94346.png
-// @version     1.8
+// @version     1.9
 // @namespace https://github.com/LoneDestroyer
 // @downloadURL https://raw.githubusercontent.com/LoneDestroyer/Twitch-Channel-Points-QOL/main/Twitch-Channel-Points-QOL.user.js
 // @updateURL https://raw.githubusercontent.com/LoneDestroyer/Twitch-Channel-Points-QOL/main/Twitch-Channel-Points-QOL.user.js
@@ -21,7 +21,7 @@
     const rewardTextSelector = '.reward-list-item > div:nth-child(1) > div:nth-child(2) > p'; // Reward Text
     const rewardsPanelFooterSelector = '.reward-center__content > div:nth-child(3) > div:nth-child(2)'; // Footer for Restore Rewards Button
     const rewardsDescriptionSelector = '.reward-center-body > div:nth-child(1) > div:nth-child(1) > p:nth-child(1)'; // Rewards Description
-    
+
     // --- Power-Ups Selector ---
     function getPowerUpsTitleElement() {
         return Array.from(document.querySelectorAll('.tw-title')).find(
@@ -39,7 +39,10 @@
         'Windows 10': 'https://www.microsoft.com/favicon.ico',
         'Windows 11': 'https://www.microsoft.com/favicon.ico',
         Windows: 'https://www.microsoft.com/favicon.ico',
-        Xbox: 'https://www.xbox.com/favicon.ico'
+        Xbox: 'https://www.xbox.com/favicon.ico',
+        EXPIRED: 'https://upload.wikimedia.org/wikipedia/commons/e/e5/Fluent_Emoji_flat_1f6ab.svg',
+        ENDED: 'https://upload.wikimedia.org/wikipedia/commons/e/e5/Fluent_Emoji_flat_1f6ab.svg',
+        Entry: 'https://cdn0.iconfinder.com/data/icons/travel-258/64/ticket_entry_pass_entrance_coupon_-512.png',
     };
 
     // Get removed rewards from localStorage
@@ -397,7 +400,7 @@
         for (const [key, iconUrl] of Object.entries(iconMappings)) {
             if (rewardText.startsWith(key)) {
                 const displayText = rewardText.replace(
-                    new RegExp(`^${key}:?(?:\\s*(?:Key Giveaway:?|APP Key:?))?\\s*`, 'i'),
+                    new RegExp(`^${key}:?(?:\\s*(?:Key Giveaway:?|APP Key:?|Key:?))?\\s*`, 'i'),
                     ''
                 ).trim();
                 const iconHtml = `<img src="${iconUrl}" alt="${key}" style="width:16px; height:16px; vertical-align:middle; margin-right:4px;">`;

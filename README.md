@@ -13,7 +13,7 @@
 - Hide Unwanted Point Rewards & Power-Ups (*global*)
 - Restore Hidden Items
 - Linkyify Descriptions - Converts plain text URLs in the reward description into clickable links.
-- Replaces platform name prefixes (e.g., "Steam:") with platform icons (Steam, GOG, EA, Microsoft Store, Windows, Xbox)
+- Replaces platform name prefixes (e.g., "Steam:") with platform icons (Steam, GOG, EA, Microsoft Store, Windows, Xbox, Entry, EXPIRED, ENDED)
 
 <!-- Install Help -->
 ## Installation
