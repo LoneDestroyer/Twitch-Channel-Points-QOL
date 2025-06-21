@@ -244,7 +244,7 @@
                     margin-left: 10px; justify-content: normal !important; margin: 4px 0; min-height: 32px;
                     min-width: 0; border: none; display: flex;
                 `;
-                restoreButton.title = `Restore: ${rewardText}`;
+                restoreButton.title = `Restore: "${rewardText}"`;
                 restoreButton.dataset.reward = rewardText;
 
                 // Build Twitch-style label structure
@@ -417,7 +417,7 @@
             const rewardsDectipText = rewardsDescripEl.textContent;
             const txt2UrlRegex = /(https?:\/\/[^\s]+)/g;
             if (txt2UrlRegex.test(rewardsDectipText)) {
-                const txt2UrlHtml = rewardsDectipText.replace(txt2UrlRegex, url => `<a href="${url}" rewardsDescripEl="_blank" rel="noopener noreferrer">${url}</a>`);
+                const txt2UrlHtml = rewardsDectipText.replace(txt2UrlRegex, url => `<a href="${url}" target="_blank" rel="noopener noreferrer">${url}</a>`);
                 rewardsDescripEl.innerHTML = txt2UrlHtml;
             }
         }
