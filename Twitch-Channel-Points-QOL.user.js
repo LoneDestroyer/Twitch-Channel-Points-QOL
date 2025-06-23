@@ -5,7 +5,7 @@
 // @license     MIT
 // @match       https://www.twitch.tv/*
 // @icon        https://static.twitchcdn.net/assets/favicon-32-e29e246c157142c94346.png
-// @version     2.0.0
+// @version     2.0.1
 // @namespace https://github.com/LoneDestroyer
 // @downloadURL https://raw.githubusercontent.com/LoneDestroyer/Twitch-Channel-Points-QOL/main/Twitch-Channel-Points-QOL.user.js
 // @updateURL https://raw.githubusercontent.com/LoneDestroyer/Twitch-Channel-Points-QOL/main/Twitch-Channel-Points-QOL.user.js
@@ -113,19 +113,19 @@
         if (rewardsPanelFooterEl && !document.querySelector('#restore-rewards-button')) {
             const restoreRewardsButton = document.createElement('button');
             restoreRewardsButton.id = 'restore-rewards-button';
-            restoreRewardsButton.className = 'ScCoreButton-sc-ocjdkq-0 kEIAKL'; // Twitch button classes
+            restoreRewardsButton.className = 'ScCoreButton-sc-ocjdkq-0 gGttfb'; // Twitch button classes
             restoreRewardsButton.style = `box-shadow: 0 0 0 2px color-mix(in srgb, var(--color-green-13) 30%, transparent), 0 1px 4px rgba(0,0,0,0.12); margin-left: 10px`;
 
             // Button Label
             const restoreLabelInner = document.createElement('div');
             restoreLabelInner.setAttribute('data-a-target', 'tw-core-button-label-text');
-            restoreLabelInner.className = 'Layout-sc-1xcs6mc-0 JckMc';
+            restoreLabelInner.className = 'Layout-sc-1xcs6mc-0 bLZXTb';
 
             // Clock Icon
             const restoreIconDiv = document.createElement('div');
             restoreIconDiv.className = 'Layout-sc-1xcs6mc-0 eynyeD';
             restoreIconDiv.innerHTML = `
-            <div style="color: var(--color-green-13);" class="Layout-sc-1xcs6mc-0 eBsWTL">
+            <div style="color: var(--color-green-13);" class="Layout-sc-1xcs6mc-0 koTJUC">
                 <div class="ScSvgWrapper-sc-wkgzod-0 suNfx tw-svg">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="20" height="20">
                         <path fill="currentColor" d="M48 256c0-114.9 93.1-208 208-208c49.7 0 95.5 17.5 131.1 46.6l-39.8 39.8c-15.1 15.1-4.4 41 17 41H464c13.3 0 24-10.7 24-24V56c0-21.4-25.9-32.1-41-17l-39.6 39.6C370.5 46.7 317.2 24 256 24C119 24 8 135 8 272s111 248 248 248c132.3 0 240-107.7 240-240c0-13.3-10.7-24-24-24s-24 10.7-24 24c0 105.9-86.1 192-192 192S48 361.9 48 256zm232-88v72c0 13.3 10.7 24 24 24h72c13.3 0 24-10.7 24-24s-10.7-24-24-24h-48v-48c0-13.3-10.7-24-24-24s-24 10.7-24 24z"/>
@@ -174,14 +174,15 @@
             const restoreContainerHeader = document.createElement('div');
             restoreContainerHeader.textContent = 'Restore Hidden Rewards';
             restoreContainerHeader.style = `
-                font-size: var(--font-size-4) !important; font-weight: var(--font-weight-semibold) !important;
+                font-size: var(--font-size-3) !important; font-weight: var(--font-weight-normal) !important;
                 font-family: var(--font-display); text-align: left !important; display: flex;
                 align-items: center; color: #efeffi; padding: 5px 0; border-radius: 5px 5px 0 0;}
+                line-height: var(--line-height-heading) !important; letter-spacing: -0.18px !important;
             `;
 
             // Add a close button to the header
             const closeButton = document.createElement('button');
-            closeButton.className = 'ScCoreButton-sc-ocjdkq-0 bhSCzT ScButtonIcon-sc-9yap0r-0 exrGQc';
+            closeButton.className = 'ScCoreButton-sc-ocjdkq-0 iPkwTD ScButtonIcon-sc-9yap0r-0 dcNXJO';
             closeButton.setAttribute('aria-label', 'Close');
             closeButton.title = 'Close Restore Rewards Panel';
 
@@ -201,7 +202,7 @@
 
             const closeButtonOuter = document.createElement('div');
             closeButtonOuter.className = 'Layout-sc-1xcs6mc-0 iieUvQ';
-            closeButtonOuter.style = `padding-left: 70px;`;
+            closeButtonOuter.style = `padding-left: 75px;`;
             closeButtonOuter.appendChild(closeButton);
 
             // On click closes the restore container
@@ -238,7 +239,7 @@
             const restoreButtonsContainer = document.querySelector('#restore-buttons-container');
             if (!restoreButtonsContainer.querySelector(`.restore-reward-button[data-reward="${rewardText}"]`)) {
                 const restoreButton = document.createElement('button');
-                restoreButton.className = 'ScCoreButton-sc-ocjdkq-0 kEIAKL restore-reward-button';
+                restoreButton.className = 'ScCoreButton-sc-ocjdkq-0 gGttfb restore-reward-button';
                 restoreButton.style = `
                     box-shadow: 0 0 0 2px color-mix(in srgb,${rewardText === 'Twitch Power-Ups'?'var(--color-blue-9)':'var(--color-green-13)'} 70%, transparent),0 1px 4px rgba(0, 0, 0, 0.12);
                     margin-left: 10px; justify-content: normal !important; margin: 4px 0; min-height: 32px;
@@ -253,7 +254,7 @@
 
                 const restoreButtonsInner = document.createElement('div');
                 restoreButtonsInner.setAttribute('data-a-target', 'tw-core-button-label-text');
-                restoreButtonsInner.className = 'Layout-sc-1xcs6mc-0 JckMc';
+                restoreButtonsInner.className = 'Layout-sc-1xcs6mc-0 bLZXTb';
 
                 const iconAndText = document.createElement('div');
                 iconAndText.className = 'Layout-sc-1xcs6mc-0 eynyeD';
