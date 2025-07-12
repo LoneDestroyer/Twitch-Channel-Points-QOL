@@ -5,10 +5,10 @@
 // @license     MIT
 // @match       https://www.twitch.tv/*
 // @icon        https://static.twitchcdn.net/assets/favicon-32-e29e246c157142c94346.png
-// @version     2.0.1
-// @namespace https://github.com/LoneDestroyer
+// @version     2.0.2
+// @namespace   https://github.com/LoneDestroyer
 // @downloadURL https://raw.githubusercontent.com/LoneDestroyer/Twitch-Channel-Points-QOL/main/Twitch-Channel-Points-QOL.user.js
-// @updateURL https://raw.githubusercontent.com/LoneDestroyer/Twitch-Channel-Points-QOL/main/Twitch-Channel-Points-QOL.user.js
+// @updateURL   https://raw.githubusercontent.com/LoneDestroyer/Twitch-Channel-Points-QOL/main/Twitch-Channel-Points-QOL.user.js
 // ==/UserScript==
 
 (function() {
@@ -24,7 +24,7 @@
 
     // --- Power-Ups Selector ---
     function getPowerUpsTitleElement() {
-        return Array.from(document.querySelectorAll('.tw-title')).find(
+        return Array.from(document.querySelectorAll('p')).find(
             powerUpsTitleEl => powerUpsTitleEl.textContent.trim().toLowerCase() === 'power-ups'
         );
     }
