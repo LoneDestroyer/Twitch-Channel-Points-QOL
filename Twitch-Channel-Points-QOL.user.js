@@ -5,7 +5,7 @@
 // @license     MIT
 // @match       https://www.twitch.tv/*
 // @icon        https://static.twitchcdn.net/assets/favicon-32-e29e246c157142c94346.png
-// @version     2.0.2
+// @version     2.0.3
 // @namespace   https://github.com/LoneDestroyer
 // @downloadURL https://raw.githubusercontent.com/LoneDestroyer/Twitch-Channel-Points-QOL/main/Twitch-Channel-Points-QOL.user.js
 // @updateURL   https://raw.githubusercontent.com/LoneDestroyer/Twitch-Channel-Points-QOL/main/Twitch-Channel-Points-QOL.user.js
@@ -17,9 +17,9 @@
     // --- Selectors ---
     const rewardsPanelSelector = '#channel-points-reward-center-body'; // Rewards Panel
     const rewardsBodySelector = '.reward-center__content'; // Rewards Center Content
-    const rewardSelector = '.reward-list-item'; // Rewards Item
-    const rewardTextSelector = '.reward-list-item > div:nth-child(1) > div:nth-child(2) > p'; // Reward Text
-    const rewardsPanelFooterSelector = '.reward-center__content > div:nth-child(3) > div:nth-child(2)'; // Footer for Restore Rewards Button
+    const rewardSelector = 'div.cXZCZH' //'.reward-list-item'; // Rewards Item
+    const rewardTextSelector = 'div.cXZCZH > div:nth-child(1) > div:nth-child(2) > p' //'.reward-list-item > div:nth-child(1) > div:nth-child(2) > p'; // Reward Text
+    const rewardsPanelFooterSelector = '.reward-center__content > div:nth-child(3) > div:nth-child(1) > div:nth-child(1) > div:nth-child(1)'; // Footer for Restore Rewards Button
     const rewardsDescriptionSelector = '.reward-center-body > div:nth-child(1) > div:nth-child(1) > p:nth-child(1)'; // Rewards Description
 
     // --- Power-Ups Selector ---
@@ -113,8 +113,8 @@
         if (rewardsPanelFooterEl && !document.querySelector('#restore-rewards-button')) {
             const restoreRewardsButton = document.createElement('button');
             restoreRewardsButton.id = 'restore-rewards-button';
-            restoreRewardsButton.className = 'ScCoreButton-sc-ocjdkq-0 gGttfb'; // Twitch button classes
-            restoreRewardsButton.style = `box-shadow: 0 0 0 2px color-mix(in srgb, var(--color-green-13) 30%, transparent), 0 1px 4px rgba(0,0,0,0.12); margin-left: 10px`;
+            restoreRewardsButton.className = 'ScCoreButton-sc-ocjdkq-0 yezmM'; // Twitch button classes
+            restoreRewardsButton.style = `box-shadow: 0 0 0 2px color-mix(in srgb, var(--color-green-13) 30%, transparent), 0 1px 4px rgba(0,0,0,0.12); margin-inline: 8px 8px !important`;
 
             // Button Label
             const restoreLabelInner = document.createElement('div');
@@ -239,7 +239,7 @@
             const restoreButtonsContainer = document.querySelector('#restore-buttons-container');
             if (!restoreButtonsContainer.querySelector(`.restore-reward-button[data-reward="${rewardText}"]`)) {
                 const restoreButton = document.createElement('button');
-                restoreButton.className = 'ScCoreButton-sc-ocjdkq-0 gGttfb restore-reward-button';
+                restoreButton.className = 'ScCoreButton-sc-ocjdkq-0 yezmM restore-reward-button';
                 restoreButton.style = `
                     box-shadow: 0 0 0 2px color-mix(in srgb,${rewardText === 'Twitch Power-Ups'?'var(--color-blue-9)':'var(--color-green-13)'} 70%, transparent),0 1px 4px rgba(0, 0, 0, 0.12);
                     margin-left: 10px; justify-content: normal !important; margin: 4px 0; min-height: 32px;
